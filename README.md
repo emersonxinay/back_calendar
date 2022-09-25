@@ -38,3 +38,17 @@
   npm i express@4.17.1
 ```
 
+### se crea la carpeta public y por dentro dos archivos uno .html y el otro .css 
+
+Escribes cualquier etiqueta en el .html con la base de html5(recuerda conectar con el css) y en .css también 
+
+### creamos un archivo para variables de entorno 
+```code 
+//.env
+PORT=4000
+```
+### ahora instalamos un paquete para variables de entorno 
+
+```bash
+npm i dotenv
+```
