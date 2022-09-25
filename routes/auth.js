@@ -8,7 +8,7 @@ const {
   tokenUsuario,
 } = require('../controllers/auth');
 
-router.post('/register', crearUsuario);
+router.post('/new', crearUsuario);
 
 router.get('/login', loginUsuario);
 
