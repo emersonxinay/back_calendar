@@ -52,3 +52,13 @@ PORT=4000
 ```bash
 npm i dotenv
 ```
+
+### ahora creamos una constante dentro del archivo index.js 
+```js
+
+```
+
+### instalar un validador 
+```bash 
+npm i express-validator
+```
