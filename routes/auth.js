@@ -2,12 +2,17 @@
 // host + api/auth
 const { Router } = require('express');
 const router = Router();
+const {
+  crearUsuario,
+  loginUsuario,
+  tokenUsuario,
+} = require('../controllers/auth');
 
-router.get('/', (req, res) => {
-  res.json({
-    ok: true,
-  });
-});
+router.post('/register', crearUsuario);
+
+router.get('/login', loginUsuario);
+
+router.get('/token', tokenUsuario);
 
 // para exportar
 module.exports = router;
