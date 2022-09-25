@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 //requiere o hace petición de variables de entorno
-require("dotenv").config();
+require('dotenv').config();
 
 // // con esto se podra ver desde consola todos los variables de entorno
 // console.log(process.env);
@@ -10,15 +10,10 @@ const app = express();
 
 // la carpeta publica
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // //rutas
-// app.get("/", (req, res) => {
-//   console.log("se requiere /");
-//   res.json({
-//     ok: true,
-//   });
-// });
+app.use('/api/auth', require('./routes/auth'));
 
 // escuchar peticiones
 
