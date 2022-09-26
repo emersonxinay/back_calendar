@@ -25,16 +25,16 @@ const crearUsuario = (req, res = response) => {
   //   });
   // }
 
-  // manejo de error  o validación de forma correcta
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      ok: false,
-      errors: errors.mapped(),
-    });
-  }
+  // // manejo de error  o validación de forma correcta
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return res.status(400).json({
+  //     ok: false,
+  //     errors: errors.mapped(),
+  //   });
+  // }
 
-  res.status(200).json({
+  res.status(201).json({
     ok: true,
     msg: 'registro',
     name,
@@ -46,16 +46,16 @@ const crearUsuario = (req, res = response) => {
 const loginUsuario = (req, res = response) => {
   const { email, password } = req.body;
 
-  // manejo de error  o validación de forma correcta
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      ok: false,
-      errors: errors.mapped(),
-    });
-  }
+  // // manejo de error  o validación de forma correcta
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return res.status(400).json({
+  //     ok: false,
+  //     errors: errors.mapped(),
+  //   });
+  // }
 
-  res.status(200).json({
+  res.status(201).json({
     ok: true,
     msg: 'login',
     email,
@@ -63,13 +63,10 @@ const loginUsuario = (req, res = response) => {
   });
 };
 
-const tokenUsuario = (req, res = response) => {
-  const { token } = req.body;
-
-  res.status(200).json({
+const revalidarToken = (res = response) => {
+  res.status(201).json({
     ok: true,
-    msg: 'token',
-    token,
+    msg: 'renew',
   });
 };
 
@@ -77,5 +74,5 @@ const tokenUsuario = (req, res = response) => {
 module.exports = {
   crearUsuario,
   loginUsuario,
-  tokenUsuario,
+  revalidarToken,
 };

@@ -1,13 +1,14 @@
 // rutas de usuarios / auth
 // host + api/auth
 const { Router } = require('express');
-const router = Router();
 const { check } = require('express-validator');
+const { validarCampos } = require('../middlewares/validar-campos');
 const {
   crearUsuario,
   loginUsuario,
-  tokenUsuario,
+  revalidarToken,
 } = require('../controllers/auth');
+const router = Router();
 
 router.post(
   '/new',
@@ -18,6 +19,7 @@ router.post(
     check('password', 'password minimo de 6 caracteres obligatorio').isLength({
       min: 6,
     }),
+    validarCampos,
   ],
   crearUsuario
 );
@@ -30,22 +32,12 @@ router.post(
     check('password', 'password minimo de 6 caracteres obligatorio').isLength({
       min: 6,
     }),
+    validarCampos,
   ],
   loginUsuario
 );
 
-router.get(
-  '/token',
-  [
-    // midlewares
-    check('name', 'el nombre es obligatorio').not().isEmpty(),
-    check('email', 'email obligatorio').isEmail(),
-    check('password', 'password minimo de 6 caracteres obligatorio').isLength({
-      min: 6,
-    }),
-  ],
-  tokenUsuario
-);
+router.get('/token', revalidarToken);
 
 // para exportar
 module.exports = router;
