@@ -1,13 +1,16 @@
 const express = require('express');
-
 //requiere o hace petición de variables de entorno
 require('dotenv').config();
+const { dbConection } = require('./database/config');
 
 // // con esto se podra ver desde consola todos los variables de entorno
 // console.log(process.env);
 
 // crear el servidor del express
 const app = express();
+
+// base de datos
+dbConection();
 
 // la carpeta publica
 

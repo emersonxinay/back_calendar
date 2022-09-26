@@ -3,8 +3,7 @@
 
 // segunda forma de hacerlo
 const { response } = require('express');
-const { validationResult } = require('express-validator');
-
+const Usuario = require('../models/Usuario');
 // // primera forma de hacer
 // const crearUsuario = (req, res = express.response) => {
 //   res.json({
@@ -14,33 +13,40 @@ const { validationResult } = require('express-validator');
 // };
 
 // segunda forma de hacerlo = la correcta
-const crearUsuario = (req, res = response) => {
-  const { name, email, password } = req.body;
+const crearUsuario = async (req, res = response) => {
+  // const { name, email, password } = req.body;
+  try {
+    const usuario = new Usuario(req.body);
 
-  // // validacion  de forma rudimentaria
-  // if (name.length < 5) {
-  //   return res.status(400).json({
-  //     ok: false,
-  //     msg: 'El nombre tiene que tener mas de 5 caracteres',
-  //   });
-  // }
+    await usuario.save();
 
-  // // manejo de error  o validación de forma correcta
-  // const errors = validationResult(req);
-  // if (!errors.isEmpty()) {
-  //   return res.status(400).json({
-  //     ok: false,
-  //     errors: errors.mapped(),
-  //   });
-  // }
+    // // validacion  de forma rudimentaria
+    // if (name.length < 5) {
+    //   return res.status(400).json({
+    //     ok: false,
+    //     msg: 'El nombre tiene que tener mas de 5 caracteres',
+    //   });
+    // }
 
-  res.status(201).json({
-    ok: true,
-    msg: 'registro',
-    name,
-    email,
-    password,
-  });
+    // // manejo de error  o validación de forma correcta
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({
+    //     ok: false,
+    //     errors: errors.mapped(),
+    //   });
+    // }
+    res.status(201).json({
+      ok: true,
+      msg: 'registro',
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'error habla con su administrador',
+    });
+  }
 };
 
 const loginUsuario = (req, res = response) => {
